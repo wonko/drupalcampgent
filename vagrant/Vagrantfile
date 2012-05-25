@@ -1,0 +1,32 @@
+# drupalcampgent (jmeter stuff) box
+ 
+name="drupalcamp-solo"
+
+Vagrant::Config.run do |config|
+  config.vm.define name do |node|
+    node.vm.host_name = name
+  end
+
+  config.vm.box = "deb-squeeze-32bit-193"
+  # config.vm.boot_mode = :gui
+  # config.vm.network :bridged
+  config.vm.network :hostonly, "192.168.50.4"
+  config.vm.forward_port 80, 8080
+  # config.vm.share_folder "v-data", "/vagrant_data", "../data"
+
+  config.vm.provision :chef_solo do |chef|
+    chef.cookbooks_path = "~/Sysadmin/chef-repo/cookbooks"
+    chef.roles_path = "~/Sysadmin/chef-repo/roles"
+
+    #    chef.add_role("base")
+
+    chef.add_recipe("base::default_packages")
+
+    #    chef.json = {
+    #      :load_limit => 42,
+    #      :chunky_bacon => true
+    #    }
+
+    chef.json.merge!(:base => {:upgrade => false, :awesomeness => true })
+  end
+end

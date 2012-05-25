@@ -1,0 +1,13 @@
+= DESCRIPTION:
+
+Pretty dumb and quick-n-dirty recipes for the presentation - don't use them in production!
+
+= REQUIREMENTS:
+
+= ATTRIBUTES:
+
+= USAGE:
+
+Don't. Really, don't.
+
+No, I mean it, don't.
